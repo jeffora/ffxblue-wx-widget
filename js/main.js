@@ -10,7 +10,7 @@ function renderWidget(widget, target) {
   body.className = 'panel-body';
 
   let bodyText = document.createElement('p');
-  bodyText.innerText = `Units: ${widget.units}\nWind: ${Boolean(widget.wind)}`;
+  bodyText.innerText = `Units: ${widget.units}\nWind: ${Boolean(widget.wind)}\nSelector: ${widget.selector}`;
 
   let bodyCode = document.createElement('pre');
   bodyCode.innerText = widget.code;
@@ -35,12 +35,14 @@ function renderAllWidgets(target) {
 
 function onCreateWidget(e) {
   let title = document.getElementById('titleInput').value;
+  let selector = document.getElementById('selectorInput').value;
   let units = document.getElementById('unitsInput').value;
   let showWind = document.getElementById('windInput').checked;
 
   let widget = createWidget({
     title: title,
     units: units,
+    selector: selector,
     showWind: showWind,
   });
 

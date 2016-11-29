@@ -23,7 +23,7 @@ function saveWidgets(widgets) {
 }
 
 function getCode(widget) {
-  return `// TODO: Generate code for widget: ${widget.title} (${widget.units} / ${widget.wind})`;
+  return `<script type="text/javascript" src="${window.location.origin}/embed.js?title=${widget.title}&units=${widget.units}&wind=${widget.wind}&selector=${widget.selector}"></script>`;
 }
 
 function createWidget(opts) {
@@ -32,6 +32,7 @@ function createWidget(opts) {
   let wind = Boolean(opts.showWind);
   let units = opts.units;
   let title = opts.title || 'Missing Title';
+  let selector = opts.selector || 'wx-embed';
 
   if (['metric', 'imperial'].indexOf(units) < 0) {
     units = 'metric';
@@ -41,6 +42,7 @@ function createWidget(opts) {
     title: title,
     units: units,
     wind: wind,
+    selector: selector,
   }
 
   widget.code = getCode(widget);
